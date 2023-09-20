@@ -19,7 +19,8 @@ func _process(delta):
 	
 	rotation_degrees += rotationSpeed * delta
 	
-func launch(_horizontalSpeed):
+func launch(_verticalSpeed, _horizontalSpeed):
+	verticalSpeed = _verticalSpeed
 	horizontalSpeed = _horizontalSpeed
 	if (horizontalSpeed > 0):
 		rotationSpeed = 800
