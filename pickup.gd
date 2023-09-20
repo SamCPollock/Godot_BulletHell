@@ -9,10 +9,8 @@ func _ready():
 func _process(delta):
 	handle_gravity(delta)
 
-
 func handle_gravity(_delta):
 	position += fallSpeed * _delta
-	
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("respawner"):

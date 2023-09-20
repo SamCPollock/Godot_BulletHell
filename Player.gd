@@ -2,6 +2,7 @@ extends Sprite2D
 
 
 var speed = 100
+var launchSpeed = 80;
 @export var projectile : PackedScene
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +29,11 @@ func handle_movement(_delta):
 		velocity.y += 1;
 	
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed 
+		velocity = velocity.normalized() * speed
+		if (velocity.x > 0):
+			flip_h = false 
+		elif (velocity.x < 0):
+			flip_h = true
 		
 	position += velocity * _delta
 
@@ -39,7 +44,10 @@ func handle_firing():
 		inst.transform = transform 
 		#var projectile = inst.get_node("projectile.gd")
 		#projectile.launch(1000)
-		inst.launch(50)
+		if (flip_h == true):
+			inst.launch(-launchSpeed)
+		else:
+			inst.launch(launchSpeed)
 		
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
