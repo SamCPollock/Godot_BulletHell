@@ -2,6 +2,7 @@ extends Sprite2D
 
 
 var speed = 100
+@export var projectile : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +34,12 @@ func handle_movement(_delta):
 
 func handle_firing():
 	if Input.is_action_just_pressed("fire"):
-		print ("FIRE")
+		var inst = projectile.instantiate()
+		owner.add_child(inst)
+		inst.transform = transform 
+		#var projectile = inst.get_node("projectile.gd")
+		#projectile.launch(1000)
+		inst.launch(50)
 		
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):

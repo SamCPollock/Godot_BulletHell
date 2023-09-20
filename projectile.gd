@@ -1,6 +1,10 @@
 extends Sprite2D
 
-@export var projectileSpeed = 10 
+@export var verticalSpeed = -160 
+var horizontalSpeed = 60
+@export var rotationSpeed = 800
+var speedDecay = -200
+var isFiringRight : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,4 +13,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.y += projectileSpeed * delta
+	position.y += verticalSpeed * delta
+	position.x += horizontalSpeed * delta
+	verticalSpeed -= speedDecay * delta 
+	
+	rotation_degrees += rotationSpeed * delta
+	
+func launch(_horizontalSpeed):
+	horizontalSpeed = _horizontalSpeed
+	if (horizontalSpeed > 0):
+		rotationSpeed = 800
+	else:
+		rotationSpeed = -800
+	
