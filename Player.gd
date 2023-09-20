@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	handle_movement(delta)
-	
+	handle_firing()
 		
 
 func handle_movement(_delta):
@@ -30,3 +30,11 @@ func handle_movement(_delta):
 		velocity = velocity.normalized() * speed 
 		
 	position += velocity * _delta
+
+func handle_firing():
+	if Input.is_action_just_pressed("fire"):
+		print ("FIRE")
+		
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("enemy"):
+		print ("OUGH")

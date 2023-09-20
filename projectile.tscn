@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbqklxsx7din"]
+
+[ext_resource type="Texture2D" uid="uid://cd1xn34o2nam6" path="res://frames/weapon_double_axe.png" id="1_uu2i2"]
+[ext_resource type="Script" path="res://projectile.gd" id="2_c21uo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ioo4c"]
+radius = 7.0
+
+[node name="WeaponDoubleAxe" type="Sprite2D"]
+texture = ExtResource("1_uu2i2")
+script = ExtResource("2_c21uo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_ioo4c")

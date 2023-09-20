@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://2bhys6f10mmu"]
+[gd_scene load_steps=4 format=3 uid="uid://2bhys6f10mmu"]
 
 [ext_resource type="Texture2D" uid="uid://duxb7l4g1wylg" path="res://frames/angel_idle_anim_f0.png" id="1_dmkak"]
 [ext_resource type="Script" path="res://Player.gd" id="2_tvrfy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8woja"]
+radius = 5.38516
 
 [node name="Player" type="Sprite2D"]
 position = Vector2(458, 333)
 texture = ExtResource("1_dmkak")
 script = ExtResource("2_tvrfy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_8woja")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
