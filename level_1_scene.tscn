@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2aaw7pc11awt"]
+
+[ext_resource type="PackedScene" uid="uid://2bhys6f10mmu" path="res://Player.tscn" id="1_l3jjp"]
+[ext_resource type="PackedScene" uid="uid://dudvsrflnekyp" path="res://pickup.tscn" id="2_ibein"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1sja"]
+size = Vector2(391, 20)
+
+[node name="Level1_Scene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_l3jjp")]
+position = Vector2(-111, 27)
+
+[node name="Pickup" parent="." instance=ExtResource("2_ibein")]
+position = Vector2(86, -25)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -1)
+rotation = 0.00542533
+zoom = Vector2(4, 4)
+
+[node name="BottomCollider" type="Area2D" parent="." groups=["respawner"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCollider" groups=["respawner"]]
+position = Vector2(0, 87)
+shape = SubResource("RectangleShape2D_s1sja")

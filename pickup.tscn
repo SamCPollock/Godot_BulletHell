@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dudvsrflnekyp"]
+
+[ext_resource type="Texture2D" uid="uid://bkj2m5303kjjv" path="res://frames/big_zombie_idle_anim_f0.png" id="1_0ekp7"]
+[ext_resource type="Script" path="res://pickup.gd" id="2_hbasd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nmgg2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_se6xd"]
+radius = 10.7703
+
+[node name="Pickup" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_nmgg2")
+position = Vector2(797, 243)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0ekp7")
+script = ExtResource("2_hbasd")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_se6xd")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
