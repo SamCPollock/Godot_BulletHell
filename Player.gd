@@ -1,9 +1,10 @@
 extends Sprite2D
 
+@export var projectile : PackedScene
+@export var chargeBar : Node
 
 var speed = 100
 var launchSpeed = 80;
-@export var projectile : PackedScene
 var isCharging : bool
 var minimumCharge: float = 10
 var chargeTime : float = minimumCharge
@@ -13,6 +14,7 @@ var chargeSpeed : float = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	chargeBar.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,9 +58,11 @@ func handle_firing():
 				
 func start_firing():
 	isCharging = true
+	chargeBar.visible = true;
 	pass
 	
 func release_firing():
+	print (chargeTime)
 	var inst = projectile.instantiate()
 	owner.add_child(inst)
 	inst.transform = transform 
@@ -68,6 +72,7 @@ func release_firing():
 		inst.launch(-chargeTime * chargeSpeed, launchSpeed)
 	isCharging = false
 	chargeTime = minimumCharge
+	chargeBar.visible = false
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemy"):
